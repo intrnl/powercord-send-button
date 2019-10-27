@@ -1,0 +1,7 @@
+{
+  "name": "Send Button",
+  "description": "Adds a clickable send button in chat",
+  "author": ".intrnl#6380",
+  "version": "1.0.0",
+  "license": "GPL-3.0"
+}
