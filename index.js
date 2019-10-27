@@ -22,8 +22,8 @@ class SendButton extends Plugin {
     uninject('powercord-send-button_cta')
   }
 
-  _patchButton () {
-    const ChannelTextArea = getModuleByDisplayName('ChannelTextArea', false)
+  async _patchButton () {
+    const ChannelTextArea = await getModuleByDisplayName('ChannelTextArea')
 
     inject('powercord-send-button_cta', ChannelTextArea.prototype, 'render', (_, res) => {
       res.props.children.props.children[3].props.children.push(
