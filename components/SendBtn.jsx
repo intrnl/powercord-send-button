@@ -1,9 +1,9 @@
-const { React, getModule } = require('powercord/webpack')
+const { React, getModule } = require('powercord/webpack');
 
-const cn = require('../utils/classnames')
-const buttonCN = getModule(['button', 'lookBlank'], false)
-const buttonWrapperCN = getModule(['buttonWrapper', 'pulseButton'], false)
-const textAreaCN = getModule(['attachButton', 'button'], false)
+const cn = require('../utils/classnames');
+const buttonCN = getModule(['button', 'lookBlank'], false);
+const buttonWrapperCN = getModule(['buttonWrapper', 'pulseButton'], false);
+const textAreaCN = getModule(['attachButton', 'button'], false);
 
 
 class SendBtn extends React.PureComponent {
@@ -43,8 +43,8 @@ class SendBtn extends React.PureComponent {
           </svg>
         </div>
       </button>
-    )
+    );
   }
 }
 
-module.exports = SendBtn
+module.exports = SendBtn;
