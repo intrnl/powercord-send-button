@@ -1,6 +1,7 @@
 const { Plugin } = require('powercord/entities')
 const { React, getModuleByDisplayName } = require('powercord/webpack')
 const { inject, uninject } = require('powercord/injector')
+const { findInReactTree } = require('powercord/util')
 
 const SendBtn = require('./components/SendBtn')
 
@@ -26,10 +27,19 @@ class SendButton extends Plugin {
     const ChannelTextArea = await getModuleByDisplayName('ChannelTextArea')
 
     inject('powercord-send-button_cta', ChannelTextArea.prototype, 'render', (_, res) => {
-      res.props.children.props.children[3].props.children.push(
+      const ButtonContainer = findInReactTree(res, (o) => (
+        typeof o.className === 'string' && o.className.startsWith('buttons-')
+      ))
+
+      const textArea = findInReactTree(res, (o) => (
+        typeof o.className === 'string' && o.className.startsWith('textArea-') &&
+        o.onKeyPress
+      ))
+
+      ButtonContainer.children.push(
         React.createElement(SendBtn, {
           onClick: () => {
-            res.props.children.props.children[2].props.onKeyPress(event)
+            textArea.onKeyPress(event)
           },
         }),
       )
