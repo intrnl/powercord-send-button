@@ -28,7 +28,7 @@ class SendButton extends Plugin {
         o.onSubmit
       ));
 
-      if (!textArea.onSubmit) return res;
+      if (!textArea) return res;
 
       ButtonContainer.children.push(
         React.createElement(SendBtn, {
