@@ -6,15 +6,6 @@ const { findInReactTree } = require('powercord/util');
 const SendBtn = require('./components/SendBtn');
 
 
-const event = new KeyboardEvent('keypress', {
-  key: 'Enter',
-  code: 'Enter',
-  which: 13,
-  keyCode: 13,
-  bubbles: true,
-});
-
-
 class SendButton extends Plugin {
   startPlugin () {
     this._patchButton();
@@ -34,13 +25,13 @@ class SendButton extends Plugin {
 
       const textArea = findInReactTree(res, (o) => (
         typeof o.className === 'string' && o.className.startsWith('textArea-') &&
-        o.onKeyPress
+        o.onSubmit
       ));
 
       ButtonContainer.children.push(
         React.createElement(SendBtn, {
           onClick: () => {
-            textArea.onKeyPress(event);
+            textArea.onSubmit();
           },
         }),
       );
